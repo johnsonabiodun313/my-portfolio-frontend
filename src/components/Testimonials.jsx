@@ -2,7 +2,6 @@ import { Star, Quote, Sparkles, User } from 'lucide-react'
 import { testimonials } from '../data/testimonials'
 
 export default function Testimonials() {
-  // Conditionally hide the section if testimonials array is empty
   if (!testimonials || testimonials.length === 0) {
     return null
   }
@@ -11,12 +10,12 @@ export default function Testimonials() {
     <section className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel text-xs font-semibold text-amber-400 uppercase tracking-widest">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel text-xs font-semibold text-sky-400 uppercase tracking-widest border border-sky-500/20">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Client Endorsements</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            What Tech Leaders <span className="text-gradient-gold">Say About Me</span>
+            What Tech Leaders <span className="text-gradient-cyan">Say About Me</span>
           </h2>
         </div>
 
@@ -24,16 +23,16 @@ export default function Testimonials() {
           {testimonials.map((rev, index) => (
             <div
               key={rev.id || index}
-              className="glass-panel p-6 rounded-3xl glass-panel-hover border-slate-800 text-left flex flex-col justify-between"
+              className="glass-panel p-6 rounded-3xl glass-panel-hover border-slate-800 hover:border-sky-500/30 text-left flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center gap-1 mb-4 text-amber-400">
                   {[...Array(rev.rating || 5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current" />
+                    <Star key={i} className="w-4 h-4 fill-current text-amber-400" />
                   ))}
                 </div>
 
-                <Quote className="w-8 h-8 text-amber-500/30 mb-3" />
+                <Quote className="w-8 h-8 text-sky-400/30 mb-3" />
                 <p className="text-sm text-slate-300 italic leading-relaxed mb-6">
                   "{rev.quote}"
                 </p>
@@ -44,10 +43,10 @@ export default function Testimonials() {
                   <img
                     src={rev.avatar}
                     alt={rev.author}
-                    className="w-10 h-10 rounded-full object-cover border border-amber-500/40"
+                    className="w-10 h-10 rounded-full object-cover border border-sky-500/30"
                   />
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-slate-800 border border-amber-500/40 flex items-center justify-center text-amber-400 font-bold">
+                  <div className="w-10 h-10 rounded-full bg-slate-900 border border-sky-500/30 flex items-center justify-center text-sky-400 font-bold">
                     <User className="w-5 h-5" />
                   </div>
                 )}

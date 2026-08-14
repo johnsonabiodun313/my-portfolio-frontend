@@ -13,13 +13,13 @@ export default function ToastNotification({ toastState, onOpenChange }) {
         onOpenChange={onOpenChange}
         className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 p-4 rounded-2xl glass-panel shadow-2xl border ${
           isSuccess
-            ? 'border-emerald-500/40 text-emerald-300'
-            : 'border-rose-500/40 text-rose-300'
+            ? 'border-sky-500/40 text-slate-100'
+            : 'border-rose-500/50 text-rose-300'
         } animate-in slide-in-from-bottom-5 duration-300`}
       >
         <div className="shrink-0">
           {isSuccess ? (
-            <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+            <CheckCircle2 className="w-5 h-5 text-sky-400" />
           ) : (
             <AlertCircle className="w-5 h-5 text-rose-400" />
           )}
@@ -34,7 +34,7 @@ export default function ToastNotification({ toastState, onOpenChange }) {
           </Toast.Description>
         </div>
 
-        <Toast.Close className="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors ml-2">
+        <Toast.Close className="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors ml-2 cursor-pointer">
           <X className="w-4 h-4" />
         </Toast.Close>
       </Toast.Root>

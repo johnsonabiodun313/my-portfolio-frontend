@@ -7,6 +7,7 @@ import {
   Copy,
   Check,
   MessageSquare,
+  Loader2,
 } from 'lucide-react'
 import SectionEyebrow from './SectionEyebrow'
 
@@ -44,7 +45,7 @@ export default function Contact({ onShowToast }) {
 
     setIsSubmitting(true)
 
-    // Simulate sending message
+    // Simulate sending message with loading state
     setTimeout(() => {
       setIsSubmitting(false)
       setFormData({ name: '', email: '', subject: '', message: '' })
@@ -63,7 +64,7 @@ export default function Contact({ onShowToast }) {
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <SectionEyebrow text="Get In Touch" variant="pill" />
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Contact <span className="text-gradient-gold">Me</span>
+            Contact <span className="text-gradient-cyan">Me</span>
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
             Have a project idea, contract proposal, or job opportunity? Send a message and let's bring it to reality!
@@ -76,7 +77,7 @@ export default function Contact({ onShowToast }) {
             <div className="glass-panel p-8 rounded-3xl border-slate-800 space-y-6 h-full flex flex-col justify-between">
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-white flex items-center gap-2">
-                  <MessageSquare className="w-6 h-6 text-amber-400" />
+                  <MessageSquare className="w-6 h-6 text-sky-400" />
                   Direct Contact
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed">
@@ -87,14 +88,14 @@ export default function Contact({ onShowToast }) {
                   {/* Email Row */}
                   <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
                     <div className="flex items-center gap-3 truncate">
-                      <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 shrink-0">
+                      <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 shrink-0 border border-sky-500/20">
                         <Mail className="w-5 h-5" />
                       </div>
                       <div className="truncate">
                         <div className="text-xs text-slate-400 font-medium">Email Address</div>
                         <a
                           href="mailto:abeyjohnsona@gmail.com"
-                          className="text-xs sm:text-sm font-bold text-white hover:text-amber-400 transition-colors block truncate"
+                          className="text-xs sm:text-sm font-bold text-white hover:text-sky-400 transition-colors block truncate"
                         >
                           abeyjohnsona@gmail.com
                         </a>
@@ -130,7 +131,7 @@ export default function Contact({ onShowToast }) {
 
               {/* Response Time Badge */}
               <div className="pt-6 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                <span className="flex items-center gap-1.5 text-amber-400 font-medium">
+                <span className="flex items-center gap-1.5 text-sky-400 font-medium">
                   <Clock className="w-4 h-4" />
                   Response Time
                 </span>
@@ -151,7 +152,7 @@ export default function Contact({ onShowToast }) {
                     htmlFor="contact-name"
                     className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2"
                   >
-                    Your Name <span className="text-amber-400">*</span>
+                    Your Name <span className="text-sky-400">*</span>
                   </label>
                   <input
                     id="contact-name"
@@ -162,7 +163,7 @@ export default function Contact({ onShowToast }) {
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl glass-panel border-slate-800 text-sm text-slate-200 focus:outline-none focus:border-amber-500 transition-colors placeholder:text-slate-500"
+                    className="w-full px-4 py-3 rounded-xl glass-panel border-slate-800 text-sm text-slate-200 focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-400/40 transition-all placeholder:text-slate-500"
                   />
                 </div>
 
@@ -171,7 +172,7 @@ export default function Contact({ onShowToast }) {
                     htmlFor="contact-email"
                     className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2"
                   >
-                    Your Email <span className="text-amber-400">*</span>
+                    Your Email <span className="text-sky-400">*</span>
                   </label>
                   <input
                     id="contact-email"
@@ -182,7 +183,7 @@ export default function Contact({ onShowToast }) {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl glass-panel border-slate-800 text-sm text-slate-200 focus:outline-none focus:border-amber-500 transition-colors placeholder:text-slate-500"
+                    className="w-full px-4 py-3 rounded-xl glass-panel border-slate-800 text-sm text-slate-200 focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-400/40 transition-all placeholder:text-slate-500"
                   />
                 </div>
               </div>
@@ -202,7 +203,7 @@ export default function Contact({ onShowToast }) {
                   onChange={(e) =>
                     setFormData({ ...formData, subject: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl glass-panel border-slate-800 text-sm text-slate-200 focus:outline-none focus:border-amber-500 transition-colors placeholder:text-slate-500"
+                  className="w-full px-4 py-3 rounded-xl glass-panel border-slate-800 text-sm text-slate-200 focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-400/40 transition-all placeholder:text-slate-500"
                 />
               </div>
 
@@ -211,7 +212,7 @@ export default function Contact({ onShowToast }) {
                   htmlFor="contact-message"
                   className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2"
                 >
-                  Message <span className="text-amber-400">*</span>
+                  Message <span className="text-sky-400">*</span>
                 </label>
                 <textarea
                   id="contact-message"
@@ -222,17 +223,21 @@ export default function Contact({ onShowToast }) {
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl glass-panel border-slate-800 text-sm text-slate-200 focus:outline-none focus:border-amber-500 transition-colors placeholder:text-slate-500 resize-none"
+                  className="w-full px-4 py-3 rounded-xl glass-panel border-slate-800 text-sm text-slate-200 focus:outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-400/40 transition-all placeholder:text-slate-500 resize-none"
                 ></textarea>
               </div>
 
+              {/* Sharp Crimson Red Submit Button */}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 shadow-lg shadow-amber-500/25 hover:opacity-95 transition-all disabled:opacity-50 cursor-pointer"
+                className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-bold text-white bg-red-600 hover:bg-red-500 border border-red-500 shadow-lg shadow-red-600/30 transition-all disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? (
-                  <span>Sending Message...</span>
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin text-white" />
+                    <span>Sending Message...</span>
+                  </>
                 ) : (
                   <>
                     <span>Send Message</span>
