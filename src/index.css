@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+  
+  body {
+    background-color: #0b0f17;
+    color: #f1f5f9;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Glassmorphism & Modern Rezume Design System */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow: 0 12px 35px -10px rgba(245, 158, 11, 0.15);
+  transform: translateY(-3px);
+}
+
+/* Text Gradients */
+.text-gradient {
+  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 40%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-indigo {
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 50%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-amber {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0f17;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
