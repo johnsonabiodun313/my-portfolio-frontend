@@ -19,6 +19,7 @@ export default function Contact({ onShowToast }) {
     message: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
   const [copied, setCopied] = useState(false)
 
   const handleCopyEmail = () => {
@@ -32,7 +33,7 @@ export default function Contact({ onShowToast }) {
     setTimeout(() => setCopied(false), 2500)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!formData.name || !formData.email || !formData.message) {
       onShowToast?.({
@@ -45,16 +46,51 @@ export default function Contact({ onShowToast }) {
 
     setIsSubmitting(true)
 
-    // Simulate sending message with loading state
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      onShowToast?.({
-        title: 'Message Sent Successfully! 🚀',
-        description: 'Thank you for contacting Abey Johnson! I will get back to you shortly.',
-        type: 'success',
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '9da7e90c-3124-4430-9bf7-3e0e5673dda3',
+          subject: `New Portfolio Message from ${formData.name}`,
+          from_name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
       })
-    }, 1200)
+
+      const result = await response.json()
+
+      if (result.success) {
+        setFormData({ name: '', email: '', subject: '', message: '' })
+        setSubmitted(true)
+        onShowToast?.({
+          title: 'Message Sent Successfully! 🚀',
+          description: 'Thank you for contacting Abey Johnson! I will get back to you shortly.',
+          type: 'success',
+        })
+      } else {
+        alert(result.message || 'Failed to send message. Please try again.')
+        onShowToast?.({
+          title: 'Submission Failed',
+          description: result.message || 'Please try again or email abeyjohnsona@gmail.com directly.',
+          type: 'error',
+        })
+      }
+    } catch (error) {
+      console.error('Web3Forms Error:', error)
+      alert('An unexpected error occurred while sending your message. Please try again.')
+      onShowToast?.({
+        title: 'Error Occurred',
+        description: 'Network error occurred. Please try again later.',
+        type: 'error',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -140,12 +176,19 @@ export default function Contact({ onShowToast }) {
             </div>
           </div>
 
-          {/* Interactive Form */}
+          {/* Interactive Form with Web3Forms */}
           <div className="lg:col-span-7">
             <form
               onSubmit={handleSubmit}
               className="glass-panel p-8 rounded-3xl border-slate-800 text-left space-y-5"
             >
+              {submitted && (
+                <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-medium flex items-center gap-2">
+                  <Check className="w-5 h-5 text-emerald-400 shrink-0" />
+                  <span>Thank you! Your message has been sent to Abey Johnson.</span>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label
@@ -227,7 +270,7 @@ export default function Contact({ onShowToast }) {
                 ></textarea>
               </div>
 
-              {/* Sharp Crimson Red Submit Button */}
+              {/* Submit Button with Loading State & Disabled Guard */}
               <button
                 type="submit"
                 disabled={isSubmitting}
